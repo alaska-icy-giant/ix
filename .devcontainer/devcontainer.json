@@ -1,0 +1,28 @@
+{
+  "name": "Q-STARTER",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [5173],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Vue.volar",
+        "esbenp.prettier-vscode",
+        "antfu.goto-alias",
+        "ms-playwright.playwright"
+      ],
+      "settings": {
+        "http.proxy": "http://proxy-web.micron.com",
+        "http.proxyStrictSSL": false
+      }
+    }
+  },
+  "containerEnv": {
+    "DOCKER_HOST": "ssh://hpcadmin@bolhpcnifi02"
+  },
+  "remoteEnv": {
+    "REQUESTS_CA_BUNDLE": "/etc/ssl/certs/ca-certificates.crt",
+    "NODE_EXTRA_CA_CERTS": "/etc/ssl/certs/ca-certificates.crt"
+  }
+}
