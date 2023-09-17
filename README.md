@@ -1,4 +1,4 @@
-[![Deploy static content to Pages](https://github.com/alaska-icy-giant/ix/actions/workflows/ix.yml/badge.svg)](https://github.com/alaska-icy-giant/ix/actions/workflows/ix.yml)[![Deploy static content to Pages](https://github.com/alaska-icy-giant/ix/actions/workflows/ix.yml/badge.svg)](https://github.com/alaska-icy-giant/ix/actions/workflows/ix.yml)
+[![Deploy static content to Pages](https://github.com/alaska-icy-giant/ix/actions/workflows/ix.yml/badge.svg)](https://github.com/alaska-icy-giant/ix/actions/workflows/ix.yml)
 
 # Vue 3 + TypeScript + Vite
 
