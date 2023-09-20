@@ -21,6 +21,7 @@ export const useIxStore = defineStore("ix", {
       cache: {} as IObjectKeys<any>,
       base: "https://ix-xi.vercel.app/api",
       debug: false,
+      base_url: import.meta.env.BASE_URL,
     };
   },
   actions: {
@@ -70,20 +71,27 @@ export const useIxStore = defineStore("ix", {
       this.chapterIndex = i;
       return i;
     },
-    async apply() {
-      await this.fetchChapter(
-        this.id,
-        this.title,
-        this.chapterIndex,
-        this.drawer
-      );
-      const reg = /\/(\w+)$/;
-      if (reg.test(window.location.pathname)) {
-        window.history.pushState(
-          {},
-          "",
-          window.location.pathname.replace(reg, "/" + this.chapterIndex)
+    async apply(cb?: Function) {
+      this.title = this.chapters[this.chapterIndex].title;
+      this.dlog("ix", this);
+      try {
+        await this.fetchChapter(
+          this.id,
+          this.title,
+          this.chapterIndex,
+          this.drawer,
+          cb
         );
+        const reg = /\/(\w+)$/;
+        if (reg.test(window.location.pathname)) {
+          window.history.pushState(
+            {},
+            "",
+            window.location.pathname.replace(reg, "/" + this.chapterIndex)
+          );
+        }
+      } finally {
+        if (cb) cb();
       }
     },
     toggleImmersive() {
@@ -94,7 +102,13 @@ export const useIxStore = defineStore("ix", {
       if (direction === "lefft") this.next();
       this.apply();
     },
-    async fetchChapter(b: number, t: string, i: number, d?: boolean) {
+    async fetchChapter(
+      b: number,
+      t: string,
+      i: number,
+      d?: boolean,
+      cb?: Function
+    ) {
       this.chapterModel = false;
       const _fromCache = async (u: string) =>
         u in this.cache ? this.cache[u] : await fetch(u).then((r) => r.json());
@@ -111,6 +125,7 @@ export const useIxStore = defineStore("ix", {
             this.drawer = d;
           }
         }
+        if (cb) cb();
         {
           try {
             var _cache = { [url]: resp };
@@ -131,6 +146,8 @@ export const useIxStore = defineStore("ix", {
         }
       } catch (e) {
         throw e;
+      } finally {
+        if (cb) cb();
       }
     },
   },
