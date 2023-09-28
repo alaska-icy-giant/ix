@@ -20,7 +20,7 @@ export const useIxStore = defineStore("ix", {
       lorem: "\u767e\u934a\u6210\u4ed9",
       cache: {} as IObjectKeys<any>,
       base: "https://ix-xi.vercel.app/api",
-      debug: false,
+      debug: true,
       base_url: import.meta.env.BASE_URL,
     };
   },
@@ -72,7 +72,7 @@ export const useIxStore = defineStore("ix", {
       return i;
     },
     async apply(cb?: Function) {
-      this.title = this.chapters[this.chapterIndex].title;
+      this.title = this.chapters[this.chapterIndex - 1].title;
       this.dlog("ix", this);
       try {
         await this.fetchChapter(
