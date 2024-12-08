@@ -1,0 +1,37 @@
+{
+  "name": "q-starter",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --port=7173",
+    "build": "vue-tsc --noEmit && vite build",
+    "build-stg": "vue-tsc --noEmit && vite build --mode staging",
+    "preview": "vite preview",
+    "tsc": "vue-tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,js,vue,css,scss}\""
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.6",
+    "@quasar/vite-plugin": "^1.5.0",
+    "pinia": "^2.1.6",
+    "pinia-plugin-persistedstate": "^3.2.0",
+    "quasar": "^2.12.7",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.7.0",
+    "@types/qs": "^6.9.7",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "axios": "^1.4.0",
+    "git-describe": "^4.1.1",
+    "prettier": "2.7.1",
+    "sass": "1.32.12",
+    "typescript": "^5.0.2",
+    "unplugin-auto-import": "^0.15.1",
+    "unplugin-icons": "^0.14.10",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.5"
+  }
+}
